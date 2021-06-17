@@ -18,6 +18,8 @@ function loadEventListeners() {
 
   //filter tasks
   filter.addEventListener('keyup', filterTasks);
+
+  //create event listener on document DOMContentLoaded, function -> getTasksFromLocalStorage
 }
 loadEventListeners();
 
@@ -40,6 +42,10 @@ function addTask(e) {
   li.appendChild(link);
   //append li to ul.collection
   taskList.appendChild(li);
+
+  //store task to local storage
+  storeTaskInLocalStorage(taskInput.value);
+
   //clear out input
   taskInput.value = '';
 
@@ -49,6 +55,8 @@ function addTask(e) {
 function removeTask(e) {
   if (e.target.classList.contains('fa-remove')) {
     e.target.parentElement.parentElement.remove();
+
+    //run removeTaskFromLocalStorage()
   }
 }
 
@@ -56,6 +64,8 @@ function clearTasks() {
   while(taskList.firstChild) {
     taskList.firstChild.remove();
   }
+
+  //run clearLocalStorage
 }
 
 function filterTasks(e) {
@@ -69,3 +79,21 @@ function filterTasks(e) {
     }
   })  
 }
+
+//create function: storeTaskInLocalStorage()
+function storeTaskInLocalStorage(task) {
+  let tasks;
+  if (!localStorage.getItem('tasks')) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  tasks.push(task);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+//create function: getTasksFromLocalStorage()
+
+//create function: removeTasksFromLocalStorage()
+
+//create function: clearLocalStorage
