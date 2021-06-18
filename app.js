@@ -19,7 +19,8 @@ function loadEventListeners() {
   //filter tasks
   filter.addEventListener('keyup', filterTasks);
 
-  //create event listener on document DOMContentLoaded, function -> getTasksFromLocalStorage
+  //create event listener on document DOMContentLoaded, run getTasksFromLocalStorage
+  document.addEventListener('DOMContentLoaded', getTasksFromLocalStorage);
 }
 loadEventListeners();
 
@@ -56,7 +57,8 @@ function removeTask(e) {
   if (e.target.classList.contains('fa-remove')) {
     e.target.parentElement.parentElement.remove();
 
-    //run removeTaskFromLocalStorage()
+    //remove task from LS, pass event target to function
+    removeTaskFromLocalStorage(e.target.parentElement.parentElement);
   }
 }
 
@@ -93,7 +95,44 @@ function storeTaskInLocalStorage(task) {
 }
 
 //create function: getTasksFromLocalStorage()
+function getTasksFromLocalStorage() {
+  if (!localStorage.getItem('tasks')) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  tasks.forEach(function(task) {
+    //create list item for task, add materialize classname
+    const li = document.createElement('li');
+    li.className = 'collection-item';
+    //create delete icon for list item
+    const link = document.createElement('a');
+    link.className = 'delete-item secondary-content';
+    link.innerHTML = '<i class="fa fa-remove"></i>';
+    //append text and icon to li
+    li.appendChild(document.createTextNode(task));
+    li.appendChild(link);
+    //append li to ul.collection
+    taskList.appendChild(li);
+  })
+}
 
-//create function: removeTasksFromLocalStorage()
+function removeTaskFromLocalStorage(task) {
+  const taskText = (task.textContent);
+  //get all tasks from LS
+  if (!localStorage.getItem('tasks')) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  tasks.forEach(function(task, index) {
+    if (task === taskText) {
+      //delete task
+      tasks.splice(index, 1);
+    }
+  })
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  
+}
 
 //create function: clearLocalStorage
