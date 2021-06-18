@@ -67,7 +67,8 @@ function clearTasks() {
     taskList.firstChild.remove();
   }
 
-  //run clearLocalStorage
+  //clearLocalStorage
+  clearLocalStorage();
 }
 
 function filterTasks(e) {
@@ -82,7 +83,7 @@ function filterTasks(e) {
   })  
 }
 
-//create function: storeTaskInLocalStorage()
+//store task in local storage
 function storeTaskInLocalStorage(task) {
   let tasks;
   if (!localStorage.getItem('tasks')) {
@@ -94,7 +95,7 @@ function storeTaskInLocalStorage(task) {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-//create function: getTasksFromLocalStorage()
+//get tasks from local storage
 function getTasksFromLocalStorage() {
   if (!localStorage.getItem('tasks')) {
     tasks = [];
@@ -117,6 +118,7 @@ function getTasksFromLocalStorage() {
   })
 }
 
+//remove from local storage
 function removeTaskFromLocalStorage(task) {
   const taskText = (task.textContent);
   //get all tasks from LS
@@ -136,3 +138,6 @@ function removeTaskFromLocalStorage(task) {
 }
 
 //create function: clearLocalStorage
+function clearLocalStorage() {
+  localStorage.removeItem('tasks');
+}
