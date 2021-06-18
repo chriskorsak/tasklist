@@ -1,6 +1,6 @@
 # _Task List_
 
-#### This project is a browswer-based task list application (aka a to-do list) that incorporates javascript DOM manipulation and also local browser storage to persist the data.
+#### This project is a browser-based task list application (aka a to-do list) that incorporates javascript DOM manipulation and also local browser storage to persist the data.
 
 #### _06/2021_
 
@@ -8,7 +8,7 @@
 
 ## Description
 
-This task list application is a project from [Modern Javascript From The Beginning](https://www.udemy.com/course/modern-javascript-from-the-beginning) on Udemy. It notably uses javascript DOM manipulation and local browser storage for persistent data without needing a database.
+This task list application is a project from [Modern Javascript From The Beginning](https://www.udemy.com/course/modern-javascript-from-the-beginning) on Udemy. It notably uses javascript DOM manipulation and local browser storage to persist the data without needing a database.
 
 Additionally, this application uses a CSS framework called [Materialize](https://materializecss.com/) to create the user interface. This application is fully responsive to all screen sizes.
 

@@ -7,18 +7,14 @@ const filter = document.querySelector('#filter');
 
 //load all event listeners
 function loadEventListeners() {
+  //submit form event
   form.addEventListener('submit', addTask);
-
   //remove task event and removeTask function
-  //this uses event delagation. event is tied to parent and uses a conditional.
   taskList.addEventListener('click', removeTask);
-
   //clear all tasks event and clearTasks function
   clearBtn.addEventListener('click', clearTasks);
-
   //filter tasks
   filter.addEventListener('keyup', filterTasks);
-
   //create event listener on document DOMContentLoaded, run getTasksFromLocalStorage
   document.addEventListener('DOMContentLoaded', getTasksFromLocalStorage);
 }
